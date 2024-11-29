@@ -1,0 +1,5 @@
+Challenges
+Not understanding the user squema. There is a conflict for the definition of amount  in the acquired_customer.sql file line 96. For some reason I took that line to heart without taking into account the header comment for the table (probably misread that afterwards). That line makes no sense and I lose more time than I’d expected  trying different approaches to querying Batches/Transactions/Items to make it make sense both in the source db and the destination. The data being randomized did not help. 
+After sleeping on it I read everything again and noticed the discrepancy in descriptions.
+Finding a way to keep both the newly inserted ids and the source ids while migrating the data. Some tables have no natural keys that could be used to confirm the data was correctly inserted. It was resolved by using ‘Merge’ just to insert data but It does beat using cursors and lets me keep my references for future use.
+Generating enough correct dummy data. I ended up using ChatGPT to review the dummy data I had created and then create even more rows.
