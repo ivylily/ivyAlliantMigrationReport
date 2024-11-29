@@ -1,4 +1,5 @@
 /* CREATE INDEXES IF THEY DO NOT EXISTS */
+/* This tables have very little data so indexing is really optional*/
 CREATE NONCLUSTERED INDEX IX_Orders_CustomerID_OrderID
 ON Orders (CustomerID, OrderID);
 
@@ -6,6 +7,10 @@ CREATE NONCLUSTERED INDEX IX_Order_Details_OrderID_ProductID
 ON [Order Details] (OrderID, ProductID);
 
 /* REPORTING QUERY */
+/* Now onto this query even though we are seeing the same data it is sliced in very no inclusive ways
+   I abstracted all common operations by using Commont Table Expressions for readability and reuse in later steps
+   They idea is to do the slices separately and then joining taking adavantage of the CTE optimizations (vs complex subqueries)
+*/
 WITH LastYearOrders AS (
 	SELECT 
 	o.OrderID
