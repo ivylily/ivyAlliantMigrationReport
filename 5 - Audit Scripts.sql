@@ -2,6 +2,10 @@ CREATE SCHEMA [Audit];
 GO
 
 /* Tables to hold the logging information */
+/* Quite simple approach I need to know what happened and this I save here, all details of WHAT was changed is stripped into a separate table. 
+	I'm using JSON values as they are very versatile, 
+	now I do not need to worry about the implementation for any new table o changes to the table schema.
+	(though I would need to when querying this results)*/
 CREATE TABLE [Audit].[Log](
 	[LogID] [INT] IDENTITY(1,1) PRIMARY KEY,
 	[TableName] NVARCHAR(50) NOT NULL, 
